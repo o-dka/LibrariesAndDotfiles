@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-#define Decade 10
+//
 int main(){
 int count;
 int presentF=1;
