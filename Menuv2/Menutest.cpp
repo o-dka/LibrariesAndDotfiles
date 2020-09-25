@@ -1,8 +1,13 @@
 #include <iostream>
 using namespace std;
+void ChangetheJ(int divn,int subn,int curn,int desn);
 int main(){
-int divn,subn,curn,desn,count; //for calculation purposes(i.e finding numbers and stuff)
-int ChangetheJ(divn,subn,curn,desn);
+ //for calculation purposes(i.e finding numbers and stuff)
+
+int x;
+  return ChangetheJ();
+
+
 }
 void ChangetheJ(int curn,int desn,int divn,int subn){
 cout<<"please enter your current number"<<endl;
@@ -16,12 +21,12 @@ cin>>subn;
 while(curn!=desn){
     if (curn%divn == 0 && curn/divn >= desn){
         curn /= divn;
-        cout<< ":"<< divn<<endl;
+        return":" divn;
     }
     else
     {
         curn= curn-subn;
-        cout<< "-"<< subn<<endl;
+       return "-"subn;
     }
 }
 
