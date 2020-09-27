@@ -1,18 +1,11 @@
 #include <iostream>
 using namespace std;
-void Fibonum(int count,int presentF,int pastF1, int pastF2,int i);
-void ChangetheJ(int curn,int desn,int divn,int subn);
+class CalcMenu {
+public:
 
-void menu2(int x,int y,int z,int u,int c,int v,int b,int n,int m){
- //for calculation purposes(i.e finding numbers and stuff)
-do{
-    if
- int x,y,z,u;
-    ChangetheJ(x,y,z,u);
- int c,v,b,n,m;
-    
-}while(i!=4);
-}
+
+
+
 void ChangetheJ(int curn,int desn,int divn,int subn){
  cout<<"please enter your current number"<<endl;
  cin>>curn;
@@ -35,7 +28,7 @@ void ChangetheJ(int curn,int desn,int divn,int subn){
     }
 
 }
-void Fibonum(int count ,int presentF,int pastF1,int pastF1,int i){
+void Fibonum(int count ,int presentF,int pastF1,int pastF2,int i){
  presentF=1;
  pastF1=1;
  pastF2=1;
@@ -50,5 +43,21 @@ void Fibonum(int count ,int presentF,int pastF1,int pastF1,int i){
      cout<<presentF<<endl;
      i++;
  }
- cout<<"Here is"<<count<<"of the fibonachi numbers"<<endl;
+ cout<<"Here is "<<count<<" of the fibonachi numbers"<<endl;
 }
+int menu(){
+ //for calculation purposes(i.e finding numbers and stuff)(it's a test btw)
+ int input;
+do{
+    cin>>input;
+    if (input == 1){
+    int x,y,z,u;
+    ChangetheJ(x,y,z,u);
+    }
+    if(input == 2){
+    int c,v,b,n,m;
+    Fibonum(c,v,b,n,m);
+    }
+}while(input!=0);
+}
+};
