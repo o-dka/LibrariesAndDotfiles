@@ -1,16 +1,17 @@
 #include <iostream>
 using namespace std;
-int main(){
-int x,y,answer;
+int main()
+{
+int a,b;
+cin >> a >> b;
+ 
 int chsum=0,nechsum=0;
-cin>>x>>y;
-for (int i = y;i<x;i++){
-    if (i%2 == 0 )
+for(int i=a; i<=b; i++)
+    if (i%2==0) 
         chsum+=i;
     else
-        nechsum+=i;
-}
-answer = chsum-nechsum;
-cout<<answer<<endl;
+       nechsum+=i;
+
+cout << chsum-nechsum;
 return 0;
 }
