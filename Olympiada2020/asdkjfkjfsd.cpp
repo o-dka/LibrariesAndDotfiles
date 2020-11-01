@@ -1,10 +1,16 @@
 #include <iostream>
 using namespace std;
 int main(){
-int X,N;
-const int c=12;
-const int a =19;
-cin>>N;
-X=(a*N+c)%33+1;
-cout<<X<<endl;
+int A,B;
+cin >>A,B;
+if (A+B%3 == 0|| A-B%3 == 0)
+{
+    cout<< 2<<endl;
+    cout<< 1<<endl;
+}
+else
+{
+    cout<<-1<<endl;
+}
+return 0;
 }
