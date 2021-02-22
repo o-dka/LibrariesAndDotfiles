@@ -1,0 +1,216 @@
+
+[colors]
+;background = ${xrdb:color0:#222}
+background = #B35618
+background-alt = #F2972E
+;foreground = ${xrdb:color7:#222}
+foreground = #262626
+;foreground-alt = #C9A680
+primary = #F2972E
+secondary = #e60053
+alert = #bd2c40
+
+[bar/example]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 20
+;offset-x = 1%
+;offset-y = 1%
+radius = 10.0
+fixed-center = true 
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 5
+line-color = #f00
+
+border-size = 1
+border-color = #0000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 3
+module-margin-right = 2
+
+font-0 = Tamzen:pixelsize=11;2
+font-1 = unifont:fontformat=truetype:size=11:antialias=false;2
+font-2 = Siji:pixelsize=15;3
+font-4 = Font Awesome 5 Free:pixelsize=11;2
+font-5 = Font Awesome 5 Free Solid:pixelsize=11;2
+font-6 = Font Awesome 5 Brands:pixelsize=11;2
+
+modules-left = bspwm i3
+modules-center = i3wm_title
+modules-right = pulseaudio xkeyboard  filesystem memory  popup-calendar date network-networkmanager
+
+tray-position = right
+tray-padding = 2
+tray-background = #B77510
+
+;wm-restack = bspwm
+wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-underline = ${colors.secondary}
+
+label-layout = %layout%
+label-layout-underline = ${colors.secondary}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+label-indicator-underline = ${colors.secondary}
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+label-mounted =  %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+format-underline = #F2972E
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+; Separator in between workspaces
+; label-separator =/
+;; ws-icon-[0-9]+ = <label>;<icon>
+;ws-icon-0 = 1;
+;ws-icon-1 = 2;
+;ws-icon-2 = 3;
+;ws-icon-3 = 4;
+;ws-icon-4 = 5;
+;ws-icon-5 = 6;
+;ws-icon-6 = 7;
+;ws-icon-7 = 8;
+;ws-icon-8 = 9;
+;; NOTE: The <label> needs to match the name of the i3 workspace
+; Neither <label> nor <icon> can contain a semicolon (;)
+
+;
+;
+;
+;
+;
+;
+;
+;
+;
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #F2972E
+label = %percentage_used%%
+
+[module/popup-calendar]
+type = custom/script
+exec = ~/.config/polybar/polybar-scripts/popup-calendar/popup-calendar.sh
+interval = 1
+click-left = ~/.config/polybar/polybar-scripts/popup-calendar/popup-calendar.sh --popup &
+
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+click-right=pavucontrol &
+format-volume = <label-volume> <bar-volume>
+label-volume =   %percentage%%
+label-volume-foreground = ${colors.foreground-alt}
+label-muted =  
+label-muted-foreground = ${colors.foreground-alt}
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+
+[module/network-networkmanager]
+type = custom/script
+exec = ~/.config/polybar/polybar-scripts/network-networkmanager/network-networkmanager.sh
+click-left = terminal -e 'nmtui'&
+tail = true
+
+[module/i3wm_title]
+type=custom/script
+exec=~/.config/polybar/polybar-scripts/info-i3wm_title/i3wm_title.sh
+interval=2
+
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 10
+margin-bottom = 10
+
+; vim:ft=dosini
