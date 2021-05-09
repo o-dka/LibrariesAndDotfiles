@@ -1,216 +1,274 @@
+[global/wm]
+margin-top = 1
+margin-bottom = 0
+
+[settings]
+throttle-output = 5
+throttle-output-for = 10
+screenchange-reload = true
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+; Define fallback values used by all module formats
+format-foreground = #FF0000
+format-background = #00FF00
+
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #B35618
-background-alt = #F2972E
-;foreground = ${xrdb:color7:#222}
-foreground = #262626
-;foreground-alt = #C9A680
-primary = #F2972E
-secondary = #e60053
-alert = #bd2c40
+background = #262626
+foreground = #ffcb83
+alert = #c13900
+volume-min = #bd6d00
+volume-med = #a4a900
+volume-max = #bd6d00
 
-[bar/example]
-;monitor = ${env:MONITOR:HDMI-1}
+
+
+################################################################################
+################################################################################
+############                  MAINBAR-SPECTRWM                      ############
+################################################################################
+################################################################################
+
+[bar/mainbar-spectrwm]
+monitor = ${env:MONITOR}
+;monitor-fallback = HDMI1
 width = 100%
-height = 20
+height = 18
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 10.0
-fixed-center = true 
+radius = 0.0
+fixed-center = true
+bottom = false
+separator = |
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 5
+line-size = 3
 line-color = #f00
 
-border-size = 1
-border-color = #0000000
+wm-restack = bspwm
+override-redirect = true
+
+; Enable support for inter-process messaging
+; See the Messaging wiki page for more details.
+enable-ipc = true
+
+border-size = 2
+;border-left-size = 0
+;border-right-size = 25
+;border-top-size = 0
+;border-bottom-size = 25
+border-color = #262626
 
 padding-left = 0
-padding-right = 2
+padding-right = 1
 
 module-margin-left = 3
-module-margin-right = 2
+module-margin-right = 3
 
-font-0 = Tamzen:pixelsize=11;2
-font-1 = unifont:fontformat=truetype:size=11:antialias=false;2
-font-2 = Siji:pixelsize=15;3
-font-4 = Font Awesome 5 Free:pixelsize=11;2
-font-5 = Font Awesome 5 Free Solid:pixelsize=11;2
-font-6 = Font Awesome 5 Brands:pixelsize=11;2
+font-0 = "Noto Sans:size=10;0"
+font-1 = "FontAwesome:size=10;0"
+font-2 = "Noto Sans:size=10;0"
+font-4 = "Siji:size=20;3"
 
-modules-left = bspwm i3
-modules-center = i3wm_title
-modules-right = pulseaudio xkeyboard  filesystem memory  popup-calendar date network-networkmanager
+modules-left = ewmh 
+modules-center = xwindow 
+modules-right = xkeyboard pavolume memory2  network-networkmanager date-popup
 
-tray-position = right
+tray-detached = false
+tray-offset-x = 0
+tray-offset-y = 0
 tray-padding = 2
-tray-background = #B77510
+tray-maxsize = 20
+tray-scale = 1.0
+tray-position = right
+tray-background = ${colors.background}
 
-;wm-restack = bspwm
-wm-restack = i3
+scroll-up = spectrwm-desknext
+scroll-down = spectrwm-deskprev
 
-;override-redirect = true
 
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
 
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
+#######################################################################################
+#########################################MODULES#######################################
+#######################################################################################
 
-cursor-click = pointer
-cursor-scroll = ns-resize
+[module/date]
+;https://github.com/jaagr/polybar/wiki/Module:-date
+type = internal/date
+; Seconds to sleep between updates
+interval = 5
+; See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+date = " %Y-%m-%d%"
+date-alt = " %d-%m-%Y"
+time = %H:%M
+time-alt = %H:%M
+format-prefix = " "
+format-prefix-foreground = #c1941a
+format-underline = #c1941a
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+label = %date% %time%
 
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
 
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+#################################################################
 
-label-layout = %layout%
-label-layout-underline = ${colors.secondary}
+[module/ewmh]
+type = internal/xworkspaces
 
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+pin-workspaces = false
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
 
-[module/filesystem]
-type = internal/fs
-interval = 25
-mount-0 = /
-label-mounted =  %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-format-underline = #F2972E
 
-[module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = false
+icon-0 = 1;
+icon-1 = 2;
+icon-2 = 3;
+icon-3 = 4;
+icon-4 = 5;
+#icon-5 = 6;
+format = <label-state>
+label-monitor = %name%
 
-; Only show workspaces on the same output as the bar
-pin-workspaces = true
+label-active = %name%
+label-active-foreground = ${colors.foreground}
+label-active-background = ${colors.background}
+label-active-underline= #c13900
+label-active-padding = 2
 
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
+label-occupied = %name%
+label-occupied-background = ${colors.background}
+label-occupied-padding = 2
 
-; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = 2
-
-; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
-
-; urgent = Workspace with urgency hint set
-label-urgent = %index%
+label-urgent = %name%
+label-urgent-foreground = ${colors.foreground}
 label-urgent-background = ${colors.alert}
+label-urgent-underline = ${colors.alert}
 label-urgent-padding = 2
 
-; Separator in between workspaces
-; label-separator =/
-;; ws-icon-[0-9]+ = <label>;<icon>
-;ws-icon-0 = 1;
-;ws-icon-1 = 2;
-;ws-icon-2 = 3;
-;ws-icon-3 = 4;
-;ws-icon-4 = 5;
-;ws-icon-5 = 6;
-;ws-icon-6 = 7;
-;ws-icon-7 = 8;
-;ws-icon-8 = 9;
-;; NOTE: The <label> needs to match the name of the i3 workspace
-; Neither <label> nor <icon> can contain a semicolon (;)
 
-;
-;
-;
-;
-;
-;
-;
-;
-;
-[module/memory]
+label-empty = %name%
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 2
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+
+
+
+
+
+################################################################################
+
+[module/memory2]
+;https://github.com/jaagr/polybar/wiki/Module:-memory
 type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #F2972E
+interval = 1
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
 label = %percentage_used%%
 
-[module/popup-calendar]
+format = Mem <label>
+format-prefix = "  "
+format-prefix-foreground = #f0ffa3
+format-underline = #f0ffa3
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+################################################################################
+
+
+
+[module/pavolume]
 type = custom/script
-exec = ~/.config/polybar/polybar-scripts/popup-calendar/popup-calendar.sh
-interval = 1
-click-left = ~/.config/polybar/polybar-scripts/popup-calendar/popup-calendar.sh --popup &
+tail = true
+label = %output%
+exec = ~/.config/polybar/scripts/pavolume.sh --listen
+click-right = exec pavucontrol
+click-left = ~/.config/polybar/scripts/pavolume.sh --togmute
+scroll-up = ~/.config/polybar/scripts/pavolume.sh --up
+scroll-down = ~/.config/polybar/scripts/pavolume.sh --down
+format-underline = #a4a900
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
 
 
+################################################################################
 
-[module/pulseaudio]
-type = internal/pulseaudio
-click-right=pavucontrol &
-format-volume = <label-volume> <bar-volume>
-label-volume =   %percentage%%
-label-volume-foreground = ${colors.foreground-alt}
-label-muted =  
-label-muted-foreground = ${colors.foreground-alt}
+[module/xkeyboard]
+;https://github.com/jaagr/polybar/wiki/Module:-xkeyboard
+type = internal/xkeyboard
+blacklist-0 = num lock
+;echo -e "\ue26f"
+format-prefix = ""
+format-prefix-foreground = ${colors.foreground}
+format-prefix-background = ${colors.background}
+format-prefix-underline = #bd6d00
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+label-layout = %layout%
+label-layout-underline = #E4A572
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.background}
+label-indicator-underline = ${colors.foreground}
 
+################################################################################
+
+[module/xwindow]
+;https://github.com/jaagr/polybar/wiki/Module:-xwindow
+type = internal/xwindow
+
+; Available tokens:
+;   %title%
+; Default: %title%
+label = %title%
+label-maxlen = 50
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+###############################################################################
 
 [module/network-networkmanager]
 type = custom/script
-exec = ~/.config/polybar/polybar-scripts/network-networkmanager/network-networkmanager.sh
-click-left = terminal -e 'nmtui'&
+exec = ~/.config/polybar/scripts/networkmanager.sh
+click-left= kitty -e 'nmtui' & 
 tail = true
 
-[module/i3wm_title]
-type=custom/script
-exec=~/.config/polybar/polybar-scripts/info-i3wm_title/i3wm_title.sh
-interval=2
+format-underline = #bd6d00
+format-prefix-foreground =#bd6d00
+format-prefix = ""
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+###############################################################################
+[module/date-popup]
+type = custom/script
+exec = ~/.config/polybar/scripts/popup-calendar.sh
+interval = 1
+click-left = ~/.config/polybar/scripts/popup-calendar.sh --popup &
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+label = %output:25%
 
+format-prefix-foreground = #c1941a
+format-underline = #c1941a
 
-[settings]
-screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
-;pseudo-transparency = false
-
-[global/wm]
-margin-top = 10
-margin-bottom = 10
-
-; vim:ft=dosini
+;Original script
+;https://gist.github.com/tott/7125b5cfa1bd48d8da0e9ad89256c802#file-gistfile1-txt
+###############################################################################
