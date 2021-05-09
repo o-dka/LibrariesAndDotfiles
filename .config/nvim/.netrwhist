@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/skate/.config/kitty'
+let g:netrw_dirhist_5='/home/skate/.fonts'
+let g:netrw_dirhist_4='/home/skate/.config/polybar'
+let g:netrw_dirhist_3='/home/skate/.config/polybar/scripts'
+let g:netrw_dirhist_2='/home/skate/.config/polybar'
+let g:netrw_dirhist_1='/home/skate/ContainerForGitStuff/Personal_Libs/StupidSort'
