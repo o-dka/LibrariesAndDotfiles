@@ -121,7 +121,19 @@ nmap <C-s> :Startify<cr>
 "Keybind for fzf:
 nmap <C-f> :Files<cr>
 
-"NerdTree Keybidings
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-g> :NERDTreeFocus<CR>
+"NerdTree
 nnoremap <C-t> :NERDTreeToggle<CR>
+"Debugger
+function! NvimGdbNoTKeymaps()
+  tnoremap <silent> <buffer> <esc> <c-\><c-n>
+endfunction
+
+let g:nvimgdb_config_override = {
+    \ 'key_next': 'n',
+    \ 'key_step': 's',
+    \ 'key_finish': 'f',
+    \ 'key_continue': 'c',
+    \ 'key_until': 'u',
+    \ 'key_breakpoint': 'b',
+    \ 'set_tkeymaps': "NvimGdbNoTKeymaps",
+    \ }

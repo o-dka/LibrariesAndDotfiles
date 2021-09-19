@@ -1,0 +1,38 @@
+#! /bin/sh
+
+#Keyboard stuff
+sxhkd &
+~/.setkeeb.sh
+
+# polybar
+~/.config/polybar/launch.sh &
+
+# wallpaper and compositor
+picom &
+feh --bg-scale ~/Pictures/art.jpeg &
+
+#GUI apps
+solaar &
+discord &
+#blueverry &
+
+#Workspaces
+bspc monitor -d I II III IV V
+
+#Borders,gaps
+bspc config border_width         5 
+bspc config window_gap           20
+bspc config split_ratio          0.52
+bspc config borderless_monocle   false
+bspc config gapless_monocle      true
+bspc config top_padding 	 24
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+# border colors
+bspc config normal_border_color "#42483e"
+bspc config focused_border_color "#f79500"
+
