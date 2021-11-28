@@ -1,6 +1,5 @@
 #include <cmath>
 #include <iostream>
-#include <string>
 #define COUNTER 10
 using namespace std;
 double formula(double y, int pew, double input) { return pow(y, pew) - input; }
