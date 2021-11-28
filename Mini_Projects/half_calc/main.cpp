@@ -2,32 +2,6 @@
 #include <iostream>
 #include <string>
 #define COUNTER 7
-/* calculates approx value of a rooted number (e.i qrt(17))
- =====================================================
-
-(-------Variables used--------)
-doubles:
- * left_br
- * right_br
- * mid
- * left_br_res
- * right_br_res
- * mid_res
- * in_numbr
-ints:
- * in_fact
-(--------Explaining what is what--------)
-> left_br is the left border , right_br is the right border middle is half of the sum of left_br and right_br
-	example:
-		 0 < n < 9
-		 0 is left_br
-		 9 is right_br
-		 mid = (left_br+right_br)/2 = 4.5
-> left_br_res is  a result of left_br being used instead of y
-	example:
-		left_br_res = (left_br^4) - 17
-> same goes for  right_br_res and mid_res
-*/
 using namespace std;
 double formula(double y, int pew, double input) { return pow(y, pew) - input; }
 
