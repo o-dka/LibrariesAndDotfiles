@@ -29,15 +29,6 @@ ints:
 > same goes for  right_br_res and mid_res
 */
 using namespace std;
-/*
-void swap(double *a, double *b)
-{
-	double temp;
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
-*/
 double formula(double y, int pew, double input) { return pow(y, pew) - input; }
 
 int main()
