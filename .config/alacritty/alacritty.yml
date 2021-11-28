@@ -1,0 +1,97 @@
+WINIT_X11_SCALE_FACTOR: '1.0'
+font:
+ normal:
+         family: CozetteVector
+size: 15.0
+# Themer Alacritty
+
+schemes:
+  themer-dark: &dark
+    primary:
+      background: '#262626'
+      foreground: '#e0b376'
+
+    cursor:
+      text: '#262626'
+      cursor: '#fc5e00'
+      style: Block 
+    selection:
+      text: '#262626'
+      background: '#f79500'
+
+    normal:
+      black: '#645541'
+      red: '#c13900'
+      green: '#a4a900'
+      yellow: '#caaf00'
+      blue: '#f79500'
+      magenta: '#f0ffa3'
+      cyan: '#bd6d00'
+      white: '#e0b376'
+
+    bright:
+      black: '#836d4e'
+      red: '#CD561A'
+      green: '#B6B01A'
+      yellow: '#D5B51A'
+      blue: '#F9A01A'
+      magenta: '#F3F59D'
+      cyan: '#CA801A'
+      white: '#ffcb83'
+
+    dim:
+      black: '#453e33'
+      red: '#A23508'
+      green: '#8B8F08'
+      yellow: '#A99408'
+      blue: '#CD7F08'
+      magenta: '#C8D48A'
+      cyan: '#9F5F08'
+      white: '#c19c68'
+  
+
+  themer-light: &light
+    primary:
+      background: '#edebe8'
+      foreground: '#5a5f56'
+
+    cursor:
+      text: '#edebe8'
+      cursor: '#9d7a9a'
+
+    selection:
+      text: '#edebe8'
+      background: '#70a4b9'
+
+    normal:
+      black: '#5a5f56'
+      red: '#c13900'
+      green: '#82ab55'
+      yellow: '#c49f47'
+      blue: '#70a4b9'
+      magenta: '#b2889b'
+      cyan: '#59b07f'
+      white: '#bcbcb7'
+
+    bright:
+      black: '#73776f'
+      red: '#CA5D2E'
+      green: '#97B872'
+      yellow: '#CCAE67'
+      blue: '#89B2C2'
+      magenta: '#BE9CAA'
+      cyan: '#77BC94'
+      white: '#d5d4d0'
+
+    dim:
+      black: '#42483e'
+      red: '#A83C0C'
+      green: '#759750'
+      yellow: '#AA8E45'
+      blue: '#6792A0'
+      magenta: '#9C7B88'
+      cyan: '#549B72'
+      white: '#a4a59f'
+    
+
+colors: *dark
