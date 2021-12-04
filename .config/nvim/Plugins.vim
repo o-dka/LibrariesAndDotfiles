@@ -13,12 +13,10 @@ Plug 'kana/vim-operator-user'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 "Eye candy and such
+Plug 'vimsence/vimsence'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'mhinz/vim-startify'
-Plug 'preservim/nerdtree'|
-        \Plug 'ryanoasis/vim-devicons'|
-        \Plug 'Xuyuanp/nerdtree-git-plugin'|
-        \Plug 'PhilRunninger/nerdtree-visual-selection'
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 Plug 'itchyny/lightline.vim'|
         \Plug 'josa42/vim-lightline-coc'|
         \Plug 'sinetoami/lightline-hunks'|
