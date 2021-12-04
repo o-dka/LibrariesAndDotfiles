@@ -33,9 +33,9 @@ volume-max = #bd6d00
 ################################################################################
 ################################################################################
 
-[bar/mainbar-spectrwm]
+[bar/mainbar]
 monitor = ${env:MONITOR}
-;monitor-fallback = HDMI1
+monitor-fallback = HDMI-A-1
 width = 100%
 height = 18
 ;offset-x = 1%
@@ -71,22 +71,21 @@ padding-right = 1
 module-margin-left = 3
 module-margin-right = 3
 
-font-0 = "Noto Sans:size=10;0"
-font-1 = "FontAwesome:size=10;0"
-font-2 = "Noto Sans:size=10;0"
-font-4 = "Siji:size=20;3"
+font-0 = "FontAwesome:size=10;0"
+font-1 = "CozetteVector:size=10;0"
 
-modules-left = ewmh 
-modules-center = xwindow 
-modules-right = xkeyboard pavolume memory2  network-networkmanager date-popup
 
-tray-detached = false
+modules-left = ewmh
+modules-center = xwindow
+modules-right = xkeyboard alsa memory2 network-networkmanager date
+
+tray-detached =  false
 tray-offset-x = 0
 tray-offset-y = 0
-tray-padding = 2
-tray-maxsize = 20
+tray-padding = 4
+tray-maxsize = 35
 tray-scale = 1.0
-tray-position = right
+tray-position =  right
 tray-background = ${colors.background}
 
 scroll-up = spectrwm-desknext
@@ -105,16 +104,14 @@ type = internal/date
 interval = 5
 ; See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
 ; NOTE: if you want to use syntax tags here you need to use %%{...}
-date = " %Y-%m-%d%"
-date-alt = " %d-%m-%Y"
+date = "%Y-%m-%d%"
 time = %H:%M
-time-alt = %H:%M
 format-prefix = " "
 format-prefix-foreground = #c1941a
 format-underline = #c1941a
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
-label = %date% %time%
+label = %time%  %date%
 
 
 #################################################################
@@ -127,12 +124,12 @@ enable-click = true
 enable-scroll = true
 reverse-scroll = true
 
-
-icon-0 = 1;
-icon-1 = 2;
-icon-2 = 3;
-icon-3 = 4;
-icon-4 = 5;
+;⠠ ⠢ ⠣ ⠧ ⠯
+icon-0 = ⠠
+icon-1 = ⠢
+icon-2 = ⠣
+icon-3 = ⠧
+icon-4 = ⠯
 #icon-5 = 6;
 format = <label-state>
 label-monitor = %name%
@@ -160,22 +157,18 @@ label-empty-padding = 2
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 
-
-
-
-
-
 ################################################################################
 
 [module/memory2]
 ;https://github.com/jaagr/polybar/wiki/Module:-memory
 type = internal/memory
 interval = 1
+click-left= alacritty -e 'gotop' &
 ; Available tokens:
 ;   %percentage_used% (default)
 ;   %percentage_free%
 ;   %gb_used%
-;   %gb_free%
+;   %b_free%
 ;   %gb_total%
 ;   %mb_used%
 ;   %mb_free%
@@ -183,7 +176,8 @@ interval = 1
 label = %percentage_used%%
 
 format = Mem <label>
-format-prefix = "  "
+
+format-prefix =  "☲ "
 format-prefix-foreground = #f0ffa3
 format-underline = #f0ffa3
 format-foreground = ${colors.foreground}
@@ -191,22 +185,42 @@ format-background = ${colors.background}
 
 ################################################################################
 
+[module/alsa]
+;https://github.com/jaagr/polybar/wiki/Module:-volume
+type = internal/volume
+click-right= alacritty -e 'pulsemixer' &
+format-volume = "<label-volume>  <bar-volume>"
 
-
-[module/pavolume]
-type = custom/script
-tail = true
-label = %output%
-exec = ~/.config/polybar/scripts/pavolume.sh --listen
-click-right = exec pavucontrol
-click-left = ~/.config/polybar/scripts/pavolume.sh --togmute
-scroll-up = ~/.config/polybar/scripts/pavolume.sh --up
-scroll-down = ~/.config/polybar/scripts/pavolume.sh --down
 format-underline = #a4a900
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
+label-volume = ♬
+label-volume-foreground = #a4a900
+label-muted = ∅
 
+bar-volume-width = 10
+bar-volume-foreground-0 = #478e08
+bar-volume-foreground-1 = #478e08
+bar-volume-foreground-2 = #478e08
+bar-volume-foreground-3 = #478e08
+bar-volume-foreground-4 = #478e08
+bar-volume-foreground-5 = #478e08
+bar-volume-foreground-6 = #478e08
+bar-volume-gradient = false
+bar-volume-indicator = ⏵
+bar-volume-indicator-font = 3
+bar-volume-fill = ⏵
+bar-volume-fill-font = 3
+bar-volume-empty = ⏵
+bar-volume-empty-font = 3
+bar-volume-empty-foreground = ${colors.foreground}
+format-volume-foreground = ${colors.foreground}
+format-volume-background = ${colors.background}
 
+format-muted-prefix-foreground = #8f4053
+format-muted-foreground = ${colors.foreground}
+format-muted-background = ${colors.background}
+
+format-volume-underline = #8b8f08
+format-muted-underline = #a23508
 ################################################################################
 
 [module/xkeyboard]
@@ -214,7 +228,7 @@ format-background = ${colors.background}
 type = internal/xkeyboard
 blacklist-0 = num lock
 ;echo -e "\ue26f"
-format-prefix = ""
+format-prefix =  " Ꙗ "
 format-prefix-foreground = ${colors.foreground}
 format-prefix-background = ${colors.background}
 format-prefix-underline = #bd6d00
@@ -222,7 +236,7 @@ format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 
 label-layout = %layout%
-label-layout-underline = #E4A572
+label-layout-underline = #bd6d00
 label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.background}
@@ -248,7 +262,7 @@ format-background = ${colors.background}
 [module/network-networkmanager]
 type = custom/script
 exec = ~/.config/polybar/scripts/networkmanager.sh
-click-left= kitty -e 'nmtui' & 
+click-left= alacritty -e 'nmtui' &
 tail = true
 
 format-underline = #bd6d00
@@ -256,19 +270,4 @@ format-prefix-foreground =#bd6d00
 format-prefix = ""
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
-###############################################################################
-[module/date-popup]
-type = custom/script
-exec = ~/.config/polybar/scripts/popup-calendar.sh
-interval = 1
-click-left = ~/.config/polybar/scripts/popup-calendar.sh --popup &
-format-background = ${colors.background}
-format-foreground = ${colors.foreground}
-label = %output:25%
-
-format-prefix-foreground = #c1941a
-format-underline = #c1941a
-
-;Original script
-;https://gist.github.com/tott/7125b5cfa1bd48d8da0e9ad89256c802#file-gistfile1-txt
-###############################################################################
+###############################################################################g
