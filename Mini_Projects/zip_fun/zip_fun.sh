@@ -13,7 +13,7 @@ prepare_nd_print(){
 	for i in {1..8}; do
 		mkdir $i # Creating folder levels
 	done
-	if [[ -e $FILENAME || ! -s $FILENAME ]]; then
+	if [[ -e $FILENAME && ! -s $FILENAME ]]; then
 		for ((o = 0 ; o < $HOWM ; o++)); do
 			printf "line# %i\n" $o
 			for ((i = 0 ; i < $HOWM ; i++)); do
@@ -40,7 +40,7 @@ zip -q -$3 -r $1.zip $2
 check_nd_clean(){
 	if [[ -e $ZIPNAME.zip ]]; then
        		printf "done , %s.zip created" $ZIPNAME
-		for y in {1..10} ;do
+		for y in {1..8} ;do
 			rm -rf $y
 			rm "$y.zip"
 		done
