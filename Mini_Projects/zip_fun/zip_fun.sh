@@ -6,7 +6,7 @@
 # =========================
 FILENAME="file.txt" 
 ZIPNAME="zip_folder"
-CHAR="◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯" # character to print in the file
+CHAR="◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯" # string to print in the file
 HOWM=100 # amount of characters and files to print and copy
 #=========================
 prepare_nd_print(){		
