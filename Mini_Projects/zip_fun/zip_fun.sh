@@ -4,20 +4,11 @@
 # give executable, write access
 # don't use for bad stuff!!! Only for fun and friendly pranks!!!
 # =========================
-# Algorithm:
-# 1. Creates folders 
-# 2. Creates and writes a file 
-# 3. Moves the file to a folder and zips the folder 
-# 4. Moves the zip folder into an another folder
-# 5. Repeat until all of our folders are inside one 
-# 6. Move the final folder and zip it with the highest level of compression
-# 7. Check if the zip file exists, clean it up if specified.
-#------------------------------------------------------------------
 FILENAME="file.txt" 
 ZIPNAME="zip_folder"
 CHAR="◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯◌󠇯" # character to print in the file
 HOWM=100 # amount of characters and files to print and copy
-#------------------------------------------------------------------
+#=========================
 prepare_nd_print(){		
 	for i in {1..8}; do
 		mkdir $i # Creating folder levels
